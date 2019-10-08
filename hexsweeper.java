@@ -159,6 +159,8 @@ public class hexsweeper {
 			runonce = false;
 			mineNum = 0;
 			frame.dispose();
+			playerx = 0;
+			playery = 0;
 			run();
 		}
 		public void createMines() {
