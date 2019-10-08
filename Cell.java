@@ -13,21 +13,23 @@ import java.awt.event.MouseEvent;
 
 
 public class Cell extends JButton {
-    hexgame model = new hexgame();
+    hexsweeper model = new hexsweeper();
         private final int row;
         private final int col;
         private       int value;
 
-        Cell(final int row, final int col,
-             final ActionListener actionListener) {
+       Cell(final int row, final int col) {
             this.row = row;
             this.col = col;
-            addActionListener(actionListener);
             setText("");
         }
 
         int getValue() {
             return value;
+        }
+        
+        int getRow() {
+            return row;
         }
 
         void setValue(int value) {
@@ -63,7 +65,6 @@ public class Cell extends JButton {
         }
 
         void getNeighbours(final Cell[] container) {
-            // Empty all elements first
             for (int i = 0; i < model.reusableStorage.length; i++) {
                 model.reusableStorage[i] = null;
             }
@@ -72,7 +73,6 @@ public class Cell extends JButton {
 
             for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
                 for (int colOffset = -1; colOffset <= 1; colOffset++) {
-                    // Make sure that we don't count ourselves
                     if (rowOffset == 0 && colOffset == 0) {
                         continue;
                     }
